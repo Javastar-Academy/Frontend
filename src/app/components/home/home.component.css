@@ -1,0 +1,67 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #333 0%, #fff 100%);
+}
+.container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+}
+.button {
+  width: 50%;
+  height: 100%;
+  padding: 50% 40px;
+  font-size: 30px;
+  font-family: "Courier New",serif;
+  font-weight: bold;
+  border-radius: 20px;
+  text-align: center;
+  text-align-all: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.dark {
+  background-color: #333;
+  color: #fff;
+  border-color: #fff;
+}
+
+.light {
+  background-color: #fff;
+  color: #333;
+  border-color: #333;
+}
+
+
+.container .light {
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.container .dark {
+  transition: all 0.3s ease;
+  opacity: 1;
+}
+
+.dark:hover {
+  background-color: #B89A14;
+  color: #333;
+  border-color: #333;
+  opacity: 0.5;
+}
+
+.light:hover {
+  background-color: #B89A14;
+  color: #fff;
+  border-color: #fff;
+  opacity: 0.5;
+}
+
+.gold {
+  background: #B89A14;
+}
+
