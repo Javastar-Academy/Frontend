@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-
+import * as AOS from 'aos';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,6 +20,10 @@ export class AppComponent {
       this._array.push("Geani", "Gabriel", "Dumitrache");
       this.conditie = true;
     });
+  }
+
+  ngOnInit() {
+    AOS.init()
   }
   get array(): Array<string> {
     return this._array;

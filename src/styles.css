@@ -1,1 +1,80 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+:root {
+    /* fonts */
+    --text-medium-reguler: Poppins;
+    --font-radio-canada: "Radio Canada";
+
+    /* font sizes */
+    --text-medium-reguler-size: 0.88rem;
+    --text-large-reguler-size: 1rem;
+    --text-xtra-larger-semibold-size: 1.25rem;
+    --font-size-5xl: 1.5rem;
+    --font-size-lg: 1.13rem;
+    --font-size-34xl-9: 3.37rem;
+    --heading-h1-size: 4.38rem;
+    --heading-h3-size: 2.75rem;
+    --font-size-21xl: 2.5rem;
+    --font-size-31xl: 3.13rem;
+    --font-size-11xl: 1.88rem;
+
+    /* Colors */
+    --neutral-color-white: #fff;
+    --neutral-color-800: #0f1017;
+    --neutral-color-50: #cfcfd1;
+    --color-goldenrod-100: #dab24a;
+    --color-darkgray-100: #b4b4b4;
+    --color-darkgray-200: #ababab;
+    --color-darkgray-300: #a6a6a6;
+    --neutral-color-0: #e7e7e8;
+    --color-gainsboro-100: #e6e6e6;
+    --color-whitesmoke: #f8f8f8;
+    --neutral-color-500: #57585d;
+    --primary-color-800: #e14817;
+    --color-black: #000;
+
+    /* Gaps */
+    --gap-21xl: 2.5rem;
+    --gap-5xl: 1.5rem;
+    --gap-base: 1rem;
+    --gap-9xs: 0.25rem;
+    --gap-61xl: 5rem;
+    --gap-41xl: 3.75rem;
+    --gap-37xl: 3.5rem;
+    --gap-5xs: 0.5rem;
+    --gap-3xs: 0.63rem;
+    --gap-xs: 0.75rem;
+
+    /* Paddings */
+    --padding-61xl: 5rem;
+    --padding-21xl: 2.5rem;
+    --padding-xs: 0.75rem;
+    --padding-base: 1rem;
+    --padding-28xl: 2.94rem;
+    --padding-19xl-5: 2.41rem;
+    --padding-5xl: 1.5rem;
+    --padding-67xl-5: 5.41rem;
+    --padding-3xs: 0.63rem;
+    --padding-9xs: 0.25rem;
+    --padding-0: 0rem;
+    --padding-5xs: 0.5rem;
+    --padding-16xl: 2.19rem;
+    --padding-7xl: 1.63rem;
+
+    /* border radiuses */
+    --br-5xs: 8px;
+    --br-xl: 20px;
+    --br-9xs: 4px;
+    --br-xs-5: 11.5px;
+    --br-14xl: 33px;
+    --br-3xs: 10px;
+    --br-11xs: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--neutral-color-white);
+}
