@@ -1,0 +1,94 @@
+.testimonials-container {
+  width: 100%;
+  background: white;
+  padding: 7vw;
+  gap: 25px;
+}
+
+.testimonials {
+  gap: 20px;
+}
+
+.personDetails {
+  width: 50%;
+  gap:10px;
+}
+
+.quote {
+  width: 50%;
+  position: relative;
+}
+
+.circle {
+  width: 75px;
+  height: 75px;
+  color: #DAB24A;
+  background-color: rgba(218, 178, 74, 0.1);
+  border-radius: 100px;
+  justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    font-size: 40px;
+    flex-direction: column;
+    position: absolute;
+    left: -25px;
+    top: -21px;
+}
+
+.quotes {
+  position: relative;
+  top: -18px;
+}
+
+.dots {
+  gap: 25px;
+}
+
+@media (max-width: 1025px) {
+  .testimonials-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .personDetails {
+    justify-content: flex-start;
+    width: 100%;
+    order: 1;
+  }
+  .quote {
+    width: 90%;
+  }
+  
+}
+
+@media (max-width: 540px) {
+  .quote {
+    font-size: 24px;
+
+  }
+  .circle {
+    left: -11px;
+    top: -17px;
+    width: 40px;
+    height: 40px;
+  }
+  .quotes {
+    width: 18px;
+  }
+  .testimonials-content {
+    gap: 40px;
+  }
+  .job {
+    font-size: 14px;
+    line-height: 1.4rem;
+  }
+  .personDetails {
+    gap:20px;
+  }
+  .testimonials-container {
+    gap: 40px;
+      padding: 13vw 7vw;
+  }
+  .avatar {
+    width: 52px;
+  }
+}

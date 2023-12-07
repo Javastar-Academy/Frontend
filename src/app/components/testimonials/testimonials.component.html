@@ -1,0 +1,19 @@
+<div class="testimonials-container column-center">
+  <div class="testimonials row-between-center">
+    <p-button styleClass="p-button-rounded p-button-outlined" icon="pi pi-chevron-left" (click)="switch(0)"></p-button>
+    <div [@simpleFadeAnimation]="'in'" *ngFor="let item of [current]" class="testimonials-content row-center">
+      <div class="personDetails row-center">
+        <img class="avatar" src="{{current.avatar}}" alt="avatar" />
+        <div class="column-start">
+          <span class="p-main-title bold name">{{current.name}}</span>
+          <span class="p-main-text job">{{current.job}}</span>
+        </div>
+      </div>
+      <div class="quote span-big">
+        <img class="quotes" src="../../../assets/quote.png"><span class="circle"></span>{{current.paragraph}}<img class="quotes" src="../../../assets/quote.png"></div>
+    </div>
+    <p-button styleClass="p-button-rounded p-button-outlined" icon="pi pi-chevron-right" (click)="switch(1)"></p-button>
+  </div>
+  <p-paginator #paginator (onPageChange)="updateCurrentPage($event)" [first]="0"  [rows]="1" [totalRecords]="data.length" [showFirstLastIcon]="false"></p-paginator>
+</div>
+  

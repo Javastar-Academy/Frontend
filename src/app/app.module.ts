@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CourseService} from "./services/course.service";
@@ -11,11 +11,28 @@ import { IntersectionObserverModule } from 'ngx-intersection-observer';
 import {FormsModule} from "@angular/forms";
 import { AboutComponent } from './components/about/about.component';
 import { CoursesComponent } from './components/courses/courses.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { Level1Component } from './components/level1/level1.component';
 import { Level2Component } from './components/level2/level2.component';
 import { EnrollComponent } from './components/enroll/enroll.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ButtonModule } from 'primeng/button';
+import { MenubarModule } from 'primeng/menubar';
+import { ChipModule } from 'primeng/chip';
+import { ScrollTopModule } from 'primeng/scrolltop';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { FooterComponent } from './components/footer/footer.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { PaginatorModule } from 'primeng/paginator';
+import { ContactComponent } from './components/contact/contact.component';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {CheckboxModule} from 'primeng/checkbox';
+import {AccordionModule} from 'primeng/accordion';
+
+
+
 
 @NgModule({
   declarations: [
@@ -23,18 +40,33 @@ import { EnrollComponent } from './components/enroll/enroll.component';
     HomeComponent,
     AboutComponent,
     CoursesComponent,
-    ContactComponent,
     FaqComponent,
     Level1Component,
     Level2Component,
     EnrollComponent,
+    NavbarComponent,
+    NewsletterComponent,
+    FooterComponent,
+    TestimonialsComponent,
+    ContactComponent
   ],
   imports: [
     HttpClientModule,
     AppRoutingModule,
     BrowserModule,
     IntersectionObserverModule,
-    FormsModule
+    FormsModule,
+    ButtonModule,
+    MenubarModule,
+    ChipModule,
+    ScrollTopModule,
+    InputTextModule,
+    DropdownModule,
+    BrowserAnimationsModule,
+    PaginatorModule,
+    InputTextareaModule,
+    CheckboxModule,
+    AccordionModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]

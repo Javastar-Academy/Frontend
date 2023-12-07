@@ -1031,7 +1031,6 @@ l3.css
     left: 3.75rem;
     font-size: var(--font-size-lg);
     line-height: 126%;
-    font-weight: 300;
     display: inline-block;
     width: 15.13rem;
 }
@@ -1212,16 +1211,6 @@ l3.css
     height: 2.75rem;
     cursor: pointer;
 }
-.text-adiacent-simplu1 {
-    position: absolute;
-    top: 10rem;
-    left: 4.25rem;
-    font-size: var(--font-size-lg);
-    line-height: 126%;
-    font-weight: 300;
-    display: inline-block;
-    width: 15.13rem;
-}
 .person-icon1 {
     position: absolute;
     top: 28.44rem;
@@ -1387,7 +1376,6 @@ l3.css
     left: 3.63rem;
     font-size: var(--font-size-lg);
     line-height: 126%;
-    font-weight: 300;
     display: inline-block;
     width: 15.13rem;
 }

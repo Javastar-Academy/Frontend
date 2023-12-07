@@ -1,0 +1,50 @@
+.navbar {
+    background-color: var(--main-text);
+    padding: 15px;
+    position: fixed;
+    width: 100vw;
+    z-index: 9999;
+}
+
+.headerEarly {
+    gap: 4vw;
+}
+
+.headerLate {
+    gap: 16px;
+}
+
+.logoContainer {
+    gap: 10px;
+}
+
+.logoTitle {
+    font-family: var(--font-radio-canada);
+    font-weight: 600;
+    color: white;
+    font-size: 21px;
+}
+
+@media (max-width: 1025px) {
+    .headerLate {
+        display: none;
+    }
+    p-menubar {
+        order: 0;
+    }
+    .link {
+        order: 1;
+    }
+    .logoContainer {
+        order: 1;
+    }
+    .headerEarly {
+        width: 100%;
+        justify-content: space-between;
+        padding: 0px 20px;
+    }
+    .distancer {
+        order: 2;
+    }
+}
+

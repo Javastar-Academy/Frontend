@@ -1,11 +1,17 @@
+@import 'assets/theme.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import "../node_modules/primeicons/primeicons.css";
+
 body {
     margin: 0;
     line-height: normal;
+    font-family: 'Poppins', "Helvetica Neue", sans-serif
 }
+
 
 :root {
     /* fonts */
-    --text-medium-reguler: Poppins;
+    --text-medium-reguler: 'Poppins';
     --font-radio-canada: "Radio Canada";
 
     /* font sizes */
@@ -23,9 +29,10 @@ body {
 
     /* Colors */
     --neutral-color-white: #fff;
-    --neutral-color-800: #0f1017;
-    --neutral-color-50: #cfcfd1;
-    --color-goldenrod-100: #dab24a;
+    --main-text: #0f1017;
+    --text-on-white: #57585D;
+    --main: #dab24a;
+    --text-on-black: #cfcfd1;
     --color-darkgray-100: #b4b4b4;
     --color-darkgray-200: #ababab;
     --color-darkgray-300: #a6a6a6;
@@ -78,3 +85,286 @@ a {
     text-decoration: none;
     color: var(--neutral-color-white);
 }
+
+p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 34px;
+}
+
+.p-white {
+    color: var(--text-on-black);
+}
+
+.p-gray {
+    color: var(--text-on-white);
+    margin: 0;
+}
+
+.width {
+    width: 100%;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.span-big {
+    color: var(--main-text);
+    font-size: 40px;
+    font-weight: 500;
+}
+
+.p-main-text {
+    color: var(--main-text);
+    font-size: 16px;
+    line-height: 1.6rem;
+}
+
+.p-main-title {
+    color: var(--main-text);
+    font-size: 18px;
+    line-height: 1.6rem;
+}
+
+.p-small {
+    font-size: 16px;
+}
+
+h1 {
+    line-height: 5.5rem;
+    font-weight: 600;
+    font-size: 70px;
+    margin: 0;
+}
+
+h2 {
+    color: var(--main-text);
+    font-size: 44px;
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+    font-size: 44px;
+    font-weight: 600;
+}
+
+
+app-newsletter {
+    width: 100%;
+}
+
+.h2-white {
+    color: white;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.max {
+    width: 100%;
+    height: 100%;
+}
+
+
+.row-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.row-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.row-center-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.row-center-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.row-between-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row-between-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.row-between-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.row-evenly-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.row-evenly-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.row-evenly-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.row-start-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.row-start-end {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.row-around-center {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.row-around-start {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.column-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.column-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.column-center-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.column-center-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.column-between-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column-between-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.column-between-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.column-evenly-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.column-evenly-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.column-evenly-end {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.column-start-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@media (max-width: 540px) {
+    h1 {
+        font-size: 44px;
+        line-height: 1.5em;
+    }
+    p {
+        font-size: 16px;
+    }
+}
+

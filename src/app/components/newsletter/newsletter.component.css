@@ -1,0 +1,40 @@
+.newsletter {
+    background: #F8F8F8;
+    padding: 7vw;
+}
+
+.newsBox {
+    background: var(--Gradient-sus, linear-gradient(259deg, rgba(218, 178, 74, 0.35) 13.95%, rgba(255, 255, 255, 0.00) 90.73%), #0F1017);
+    border-radius: 15px;
+    width: 100%;
+    padding: 63px 0px;
+}
+
+.delimiter {
+    max-width: 750px;
+}
+
+.inputs {
+    width: 100%;
+    gap: 30px;
+}
+
+@media (max-width: 1025px) {
+    .newsbox {
+        padding: 7vw;
+    }
+}
+
+@media (max-width: 540px) {
+    .newsletter {
+        padding: 0;
+    }
+    .newsBox {
+        border-radius: 0px;
+        padding: 15vw 7vw;
+    }
+    .inputs {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

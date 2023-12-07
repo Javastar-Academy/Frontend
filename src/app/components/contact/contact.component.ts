@@ -6,8 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  // Custom method to handle navigation
-  navigateTo(route: string) {
-    window.location.href = route;
-  }
+
+  property: string;
+  property1: string;
+
+  agreed: boolean;
+
 }

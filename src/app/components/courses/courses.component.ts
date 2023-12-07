@@ -11,9 +11,5 @@ export class CoursesComponent {
   constructor() {
   }
 
-// Custom method to handle navigation
-  navigateTo(route: string) {
-    window.location.href = route;
-  }
 
 }

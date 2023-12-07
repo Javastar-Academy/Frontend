@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from "../components/home/home.component";
 import {AboutComponent} from "../components/about/about.component";
 import {CoursesComponent} from "../components/courses/courses.component";
-import {ContactComponent} from "../components/contact/contact.component";
+import { ContactComponent } from '../components/contact/contact.component';
 import {FaqComponent} from "../components/faq/faq.component";
 import {Level1Component} from "../components/level1/level1.component";
 import {Level2Component} from "../components/level2/level2.component";
