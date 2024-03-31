@@ -11,12 +11,12 @@ export class CourseService {
   private baseuRL = 'http://localhost:8080/tova/allCourses';
   private courses: Course[];
 
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) { }
 
+  api = "http://46.101.203.100:8080"
 
-  getCourseList(): Observable<Course[]> {
-    return this.httpClient.get<Course[]>('http://localhost:8080/tova/allCourses');
+  public getCourseList(): Observable<Course[]> {
+    return this.httpClient.get<Course[]>(`${this.api}/courses`);
   }
 
 }

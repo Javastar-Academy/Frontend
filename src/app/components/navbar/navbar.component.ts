@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+
 
 
 @Component({
@@ -10,9 +12,10 @@ import { MenuItem } from 'primeng/api';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  //constructor() { }
 
   items: MenuItem[];
+    constructor(private router: Router) {}
 
   ngOnInit(): void {
       this.items = [
@@ -41,6 +44,9 @@ export class NavbarComponent implements OnInit {
         }
     ];
   }
+    navigateToRegister(): void {
+        this.router.navigate(['/register']);
+    }
 }
 
 

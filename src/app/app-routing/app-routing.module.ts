@@ -7,6 +7,7 @@ import { ContactComponent } from '../components/contact/contact.component';
 import {FaqComponent} from "../components/faq/faq.component";
 import {Level1Component} from "../components/level1/level1.component";
 import {Level2Component} from "../components/level2/level2.component";
+import { RegisterComponent } from "../components/register/register.component";
 import {EnrollComponent} from "../components/enroll/enroll.component"; // CLI imports router
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'courses', component: CoursesComponent },
   { path: 'level1', component: Level1Component },
+  { path: 'register', component: RegisterComponent },
   { path: 'level2', component: Level2Component },
   { path: 'enroll', component: EnrollComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' }
