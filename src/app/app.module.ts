@@ -9,6 +9,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import { IntersectionObserverModule } from 'ngx-intersection-observer';
 import {FormsModule} from "@angular/forms";
+import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { FaqComponent } from './components/faq/faq.component';
@@ -47,6 +48,7 @@ import {AccordionModule} from 'primeng/accordion';
     NavbarComponent,
     NewsletterComponent,
     FooterComponent,
+    RegisterComponent,
     TestimonialsComponent,
     ContactComponent
   ],
