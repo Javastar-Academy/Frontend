@@ -1,0 +1,41 @@
+name: Deploy Angular Frontend to DigitalOcean Droplet
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.13'  
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run build
+
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_KEY }}
+
+      - name: Cd to var/wwww/html
+        run: ssh -o StrictHostKeyChecking=no root@${{ secrets.FE_DROPLET_IP }} "cd /var/www/html"
+
+      - name: Remove old app files
+        run: ssh -o StrictHostKeyChecking=no root@${{ secrets.FE_DROPLET_IP }} "rm -rf Frontend/"  
+
+      - name: Copy new build to server
+        run: scp -o StrictHostKeyChecking=no -r ./dist/* root@${{ secrets.FE_DROPLET_IP }}:/var/www/html/Frontend
+
+      
+      - name: Restart Nginx  
+        run: ssh -o StrictHostKeyChecking=no root@${{ secrets.FE_DROPLET_IP }} "systemctl restart nginx"
