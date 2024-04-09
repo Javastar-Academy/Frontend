@@ -1,5 +1,4 @@
 
-
 .heroSection {
     padding: 160px 60px 100px 60px;
     width: 100%;
@@ -51,7 +50,7 @@
     gap: 70px;
     overflow: hidden;
     width: 100%;
-    background-image:url(/assets/paralelcontact.svg);
+    background-image:url(../../../assets/paralelcontact.svg);
     background-size: cover;
 }
 
