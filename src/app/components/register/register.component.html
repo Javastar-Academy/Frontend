@@ -19,19 +19,23 @@
             <div class="gapping column-start">
                 <div class="inputs column-start">
                     <span class="label">Nume:</span>
-                    <input type="" pInputText [(ngModel)]="userData.lastName" placeholder="Nume"/>
+                    <input type="text" pInputText [(ngModel)]="userData.lastName" placeholder="Nume"/>
                 </div>
                 <div class="inputs column-start">
                     <span class="label">Prenume:</span>
-                    <input type="text" pInputText [(ngModel)]="userData.lastName" placeholder="Prenume"/>
+                    <input type="text" pInputText [(ngModel)]="userData.firstName" placeholder="Prenume"/>
                 </div>
                 <div class="inputs column-start">
                     <span class="label">Adresa de e-mail:</span>
                     <input type="email" pInputText [(ngModel)]="userData.email" placeholder="Adresa de e-mail"/>
                 </div>
                 <div class="inputs column-start">
+                    <span class="label">Parola:</span>
+                    <input type="password" pInputText [(ngModel)]="userData.password" placeholder="Parola"/>
+                </div>
+                <div class="inputs column-start">
                     <span class="label">Numar de telefon:</span>
-                    <input type="tel" pInputText [(ngModel)]="userData.phoneNumber" placeholder="Numar de telefon"/>
+                    <input type="text" pInputText [(ngModel)]="userData.phoneNumber" placeholder="Numar de telefon"/>
                 </div>
                 <div class="inputs column-start">
                     <span class="label">Mesajul tau:</span>
@@ -39,7 +43,7 @@
                               placeholder="Informatii suplimentare (optional)"></textarea>
                 </div>
                 <div class="agreedTerms row-start-center">
-                    <p-checkbox name="agreedTerms" value="val1" [(ngModel)]="userData.agreed"></p-checkbox>
+                    <p-checkbox name="agreedTerms" value="true" [(ngModel)]="userData.agreed"></p-checkbox>
                     <span class="label">Am citit si sunt de acord cu
                         <span class="yellow">termeni</span> si
                         <span class="yellow">conditii</span> si cu
