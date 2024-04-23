@@ -12,4 +12,8 @@ export class ContactComponent {
 
   agreed: boolean;
 
+  sendData() {
+    // Your logic here
+    console.log('Data sent!');
+  }
 }

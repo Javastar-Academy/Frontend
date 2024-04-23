@@ -1,95 +1,60 @@
+<app-navbar></app-navbar>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Java Factory</title>
-    <link rel="stylesheet" href="register.component.css">
-</head>
-<body>
-<div class="registration-container">
-    <h2>Create Account</h2>
-    <form id="registrationForm" action="/register" method="POST">
-<!--        <div class="form-group">-->
-<!--            <label for="name">Name:</label>-->
-<!--            <input type="text" id="name" name="name" required>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="email">Email:</label>-->
-<!--            <input type="email" id="email" name="email" required>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="password">Password:</label>-->
-<!--            <input type="password" id="password" name="password" required>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <button type="submit" class="submit-button">Register</button>-->
-<!--        </div>-->
+<div class="heroSection row-start">
+    <div class="callToAction column-center-start">
         <div>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" [(ngModel)]="userData.firstName" name="firstName" required>
+            <h1>Inscriere&nbsp;in&nbsp;Javastar!</h1>
         </div>
-        <div>
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" [(ngModel)]="userData.lastName" name="lastName" required>
-        </div>
-        <div>
-            <label for="phoneNumber">Phone Number:</label>
-            <input type="tel" id="phoneNumber" [(ngModel)]="userData.phoneNumber" name="phoneNumber" required>
-        </div>
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" [(ngModel)]="userData.username" name="username" required>
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" [(ngModel)]="userData.email" name="email" required>
-        </div>
-        <div>
-            <label for="description">Description:</label>
-            <textarea id="description" [(ngModel)]="userData.description" name="description" required></textarea>
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" [(ngModel)]="userData.password" name="password" required>
-        </div>
-        <button type="submit" (click)="register()">Register</button>
-    </form>
+    </div>
 </div>
-<script>
-    document.getElementById('registrationForm').addEventListener('submit', function(event) {
-        event.preventDefault();  // Prevent the default form submission
 
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
-        };
+<div class="width column-center">
+    <div class="motive row-center">
+        <div class="containerParalelo row-center">
+            <div class="parallelogram p1"></div>
+            <div class="parallelogram p2"></div>
+        </div>
+        <div class="parallelogram p3"></div>
+        <div class="containerInputs column-start">
+            <div class="gapping column-start">
+                <div class="inputs column-start">
+                    <span class="label">Nume:</span>
+                    <input type="" pInputText [(ngModel)]="userData.lastName" placeholder="Nume"/>
+                </div>
+                <div class="inputs column-start">
+                    <span class="label">Prenume:</span>
+                    <input type="text" pInputText [(ngModel)]="userData.lastName" placeholder="Prenume"/>
+                </div>
+                <div class="inputs column-start">
+                    <span class="label">Adresa de e-mail:</span>
+                    <input type="email" pInputText [(ngModel)]="userData.email" placeholder="Adresa de e-mail"/>
+                </div>
+                <div class="inputs column-start">
+                    <span class="label">Numar de telefon:</span>
+                    <input type="tel" pInputText [(ngModel)]="userData.phoneNumber" placeholder="Numar de telefon"/>
+                </div>
+                <div class="inputs column-start">
+                    <span class="label">Mesajul tau:</span>
+                    <textarea pInputTextarea [(ngModel)]="userData.description"
+                              placeholder="Informatii suplimentare (optional)"></textarea>
+                </div>
+                <div class="agreedTerms row-start-center">
+                    <p-checkbox name="agreedTerms" value="val1" [(ngModel)]="userData.agreed"></p-checkbox>
+                    <span class="label">Am citit si sunt de acord cu
+                        <span class="yellow">termeni</span> si
+                        <span class="yellow">conditii</span> si cu
+                        <span class="yellow">politica de confidentialitate</span>
+                    </span>
+                </div>
+                <p-button pRipple label="Trimite" (click)="register()"></p-button>
+            </div>
+        </div>
+        <div class="logoSide row-center">
+            <img class="bigLogo" src="./assets/union.svg">
+            <span class="bigLogoTitle">Java Factory</span>
+        </div>
 
-        // Adjust the endpoint as necessary to fit your actual API URL structure
-        fetch('/students/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Something went wrong');
-                }
-            })
-            .then(data => {
-                console.log('Success:', data);
-                // Redirect or inform the user of successful registration here
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    });
-</script>
-</body>
-</html>
+    </div>
+</div>
+<app-newsletter></app-newsletter>
+<app-footer></app-footer>

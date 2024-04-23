@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div class="heroSection row-start">
+    <div class="callToAction column-center-start">
+        <div>
+            <h1>Intra&nbsp;in&nbsp;dashboardul&nbsp;tau!</h1>
+        </div>
+    </div>
+</div>
+
+<div class="width column-center">
+    <div class="motive row-center">
+        <div class="containerParalelo row-center">
+            <div class="parallelogram p1"></div>
+            <div class="parallelogram p2"></div>
+        </div>
+        <div class="parallelogram p3"></div>
+        <div class="containerInputs column-start">
+            <div class="gapping column-start">
+                <div class="inputs column-start">
+                    <span class="label">Username (email):</span>
+                    <input type="text" pInputText [(ngModel)]="userData.username" placeholder="Username / Email"/>
+                </div>
+                <div class="inputs column-start">
+                    <span class="label">Parola:</span>
+                    <input type="password" pInputText [(ngModel)]="userData.password" placeholder="Password"/>
+                </div>
+                <p-button pRipple label="Trimite" (click)="login()"></p-button>
+            </div>
+        </div>
+        <div class="logoSide row-center">
+            <img class="bigLogo" src="./assets/union.svg">
+            <span class="bigLogoTitle">Java Factory</span>
+        </div>
+
+    </div>
+</div>
+<app-newsletter></app-newsletter>
+<app-footer></app-footer>

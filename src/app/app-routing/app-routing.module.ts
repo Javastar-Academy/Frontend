@@ -7,8 +7,10 @@ import { ContactComponent } from '../components/contact/contact.component';
 import {FaqComponent} from "../components/faq/faq.component";
 import {Level1Component} from "../components/level1/level1.component";
 import {Level2Component} from "../components/level2/level2.component";
-import { RegisterComponent } from "../components/register/register.component";
+import {RegisterComponent} from "../components/register/register.component";
+import {LoginComponent} from "../components/login/login.component";
 import {EnrollComponent} from "../components/enroll/enroll.component"; // CLI imports router
+import {DashboardComponent} from "../dashboard/dashboard.component"; // CLI imports router
 
 const routes: Routes = [
   { path: 'faq', component: FaqComponent },
@@ -18,8 +20,10 @@ const routes: Routes = [
   { path: 'courses', component: CoursesComponent },
   { path: 'level1', component: Level1Component },
   { path: 'register', component: RegisterComponent },
+  {path: 'login', component: LoginComponent},
   { path: 'level2', component: Level2Component },
   { path: 'enroll', component: EnrollComponent },
+  {path: 'dashboard', component: DashboardComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 
 ];

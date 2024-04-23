@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { RegisterService } from "../../services/register.service";
+import {RegisterService} from "../../services/register.service";
 
 @Component({
     selector: 'app-register',
@@ -14,7 +14,8 @@ export class RegisterComponent {
         username: '',
         email: '',
         description: '',
-        password: ''
+        password: '',
+        agreed: false
     };
 
     constructor(private registerService: RegisterService) { }

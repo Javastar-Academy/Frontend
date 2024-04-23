@@ -31,6 +31,16 @@ import { ContactComponent } from './components/contact/contact.component';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CheckboxModule} from 'primeng/checkbox';
 import {AccordionModule} from 'primeng/accordion';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {OverviewComponent} from './dashboard/overview/overview.component';
+import {MatCardModule} from "@angular/material/card";
+import {OverviewHeaderComponent} from './dashboard/overview-header/overview-header.component';
+import {ScoreCardComponent} from './dashboard/score-card/score-card.component';
+import {CourseCardComponent} from './dashboard/course-card/course-card.component';
+import {ProfileCardComponent} from './dashboard/profile-card/profile-card.component';
+import {ReminderComponent} from './dashboard/reminder/reminder.component';
+import {RippleModule} from "primeng/ripple";
+import {LoginComponent} from "./components/login/login.component";
 
 
 
@@ -49,8 +59,16 @@ import {AccordionModule} from 'primeng/accordion';
     NewsletterComponent,
     FooterComponent,
     RegisterComponent,
+    LoginComponent,
     TestimonialsComponent,
-    ContactComponent
+    ContactComponent,
+    DashboardComponent,
+    OverviewComponent,
+    OverviewHeaderComponent,
+    ScoreCardComponent,
+    CourseCardComponent,
+    ProfileCardComponent,
+    ReminderComponent
   ],
   imports: [
     HttpClientModule,
@@ -68,7 +86,9 @@ import {AccordionModule} from 'primeng/accordion';
     PaginatorModule,
     InputTextareaModule,
     CheckboxModule,
-    AccordionModule
+    AccordionModule,
+    MatCardModule,
+    RippleModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]
