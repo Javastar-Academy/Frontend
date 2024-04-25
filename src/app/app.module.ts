@@ -31,17 +31,18 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import {CheckboxModule} from 'primeng/checkbox';
 import {AccordionModule} from 'primeng/accordion';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {OverviewComponent} from './dashboard/overview/overview.component';
 import {MatCardModule} from "@angular/material/card";
-import {OverviewHeaderComponent} from './dashboard/overview-header/overview-header.component';
-import {ScoreCardComponent} from './dashboard/score-card/score-card.component';
-import {CourseCardComponent} from './dashboard/course-card/course-card.component';
-import {ProfileCardComponent} from './dashboard/profile-card/profile-card.component';
-import {ReminderComponent} from './dashboard/reminder/reminder.component';
 import {RippleModule} from "primeng/ripple";
 import {LoginComponent} from "./components/login/login.component";
 import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.component';
-
+import {SidebarModule} from "primeng/sidebar";
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {TestsComponent} from "./dashboard/tests/tests.component";
+import {DocumentationComponent} from "./dashboard/documentation/documentation.component";
+import {GradesComponent} from "./dashboard/grades/grades.component";
+import {DashboardCoursesComponent} from "./dashboard/courses/dashboard-courses.component";
+import {DashboardHomeComponent} from './dashboard/dashboard-home/dashboard-home.component';
+import {MultipleChoiceTestComponent} from './multiple-choice-test/multiple-choice-test.component';
 
 @NgModule({
   declarations: [
@@ -61,13 +62,13 @@ import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.compone
     TestimonialsComponent,
     ContactComponent,
     DashboardComponent,
-    OverviewComponent,
-    OverviewHeaderComponent,
-    ScoreCardComponent,
-    CourseCardComponent,
-    ProfileCardComponent,
-    ReminderComponent,
-    AdminDashboardComponent
+      AdminDashboardComponent,
+      TestsComponent,
+      DocumentationComponent,
+      GradesComponent,
+      DashboardCoursesComponent,
+      DashboardHomeComponent,
+      MultipleChoiceTestComponent
   ],
   imports: [
     HttpClientModule,
@@ -87,9 +88,15 @@ import {AdminDashboardComponent} from './admin-dashboard/admin-dashboard.compone
     CheckboxModule,
     AccordionModule,
     MatCardModule,
-    RippleModule
+      RippleModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      SidebarModule,
+      FontAwesomeModule
   ],
   providers: [CourseService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

@@ -1,0 +1,17 @@
+<app-dashboard></app-dashboard>
+<!-- Main content area with tabs and content panels -->
+<section id="content">
+    <header id="content-header">
+        Javastar - Java Level 1
+    </header>
+    <nav id="tabs">
+        <ul>
+            <li *ngFor="let tab of tabs" [class.active]="tab.active" (click)="selectTab(tab)">
+                {{ tab.name }}
+            </li>
+        </ul>
+    </nav>
+    <div *ngFor="let tab of tabs" [id]="tab.target" class="tab-target" [class.targeted]="tab.active">
+        <p>{{ tab.content }}</p>
+    </div>
+</section>

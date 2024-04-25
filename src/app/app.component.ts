@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+
 import * as AOS from 'aos';
 @Component({
   selector: 'app-root',
@@ -8,29 +9,5 @@ import * as AOS from 'aos';
 })
 export class AppComponent {
   title = 'tovaWebsite';
-  public data: any;
-  private _array: Array<string>;
-  public conditie: boolean;
-
-
-  constructor(private http: HttpClient) {
-    this.http.get('https://api.ipify.org').subscribe(data => {
-      this.data = data;
-      this._array = new Array<string>()
-      this._array.push("Geani", "Gabriel", "Dumitrache");
-      this.conditie = true;
-    });
-  }
-
-  ngOnInit() {
-    AOS.init()
-  }
-  get array(): Array<string> {
-    return this._array;
-  }
-
-  set array(value: Array<string>) {
-    this._array = value;
-  }
 }
 
