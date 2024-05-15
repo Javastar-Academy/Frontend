@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {LoginService} from "../../services/login.service";
 import {Router} from "@angular/router";
 import {jwtDecode} from "jwt-decode";
+import {untagAllTsFiles} from "@angular/compiler-cli/src/ngtsc/shims";
 
 @Component({
     selector: 'app-register',
@@ -18,15 +19,19 @@ export class LoginComponent {
     }
 
     login() {
-
         this.loginService.authenticate(this.userData).subscribe(
             response => {
-                const role = JSON.parse(JSON.stringify(jwtDecode(response.token))).role
-                localStorage.setItem('userRole', role);   // Set user role to local storage
+                const token = response.token; // Assuming the response object has a token property
+                const decodedToken = jwtDecode<any>(token); // Use jwtDecode to parse the token
+                const role = decodedToken.role;
+
+                localStorage.setItem('jwtToken', token); // Save the token to local storage
+                localStorage.setItem('"role"', role);   // Set user role to local storage
+
                 if (role === 'ADMIN') {
                     this.router.navigate(['/admin-dashboard']);
                 } else if (role === 'STUDENT') {
-                    this.router.navigate(['/dashboard']);
+                    this.router.navigate(['/dashboard/home']);
                 } else {
                     // Handle any other roles or default case here
                 }
@@ -36,5 +41,6 @@ export class LoginComponent {
                 alert('Invalid credentials!');
             }
         );
+        this.loginService.getUserAndSaveToLocalstorage();
     }
 }
