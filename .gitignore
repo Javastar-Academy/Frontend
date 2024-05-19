@@ -2,3 +2,4 @@
 *.log
 node_modules/
 dist/
+/.angular/cache/15.2.11/
