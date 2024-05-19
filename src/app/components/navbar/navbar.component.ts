@@ -47,6 +47,10 @@ export class NavbarComponent implements OnInit {
     navigateToRegister(): void {
         this.router.navigate(['/register']);
     }
+
+    navigateToLogin() {
+        this.router.navigate(["/login"])
+    }
 }
 
 

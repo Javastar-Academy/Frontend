@@ -1,7 +1,8 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
 import {BehaviorSubject, Observable, tap} from "rxjs";
+import {TestsService} from "./test.service";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ export class LoginService {
     private loginUrl = environment.baseUrl + "/users/login";
     private isAuthenticated = new BehaviorSubject<boolean>(false);
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private testService: TestsService) {
         this.loadInitialAuthState();
     }
 
@@ -21,7 +22,8 @@ export class LoginService {
     }
 
     login(token: string): void {
-        localStorage.setItem('userToken', token);
+        localStorage.setItem('jwtToken', token);
+        this.getUserAndSaveToLocalstorage()
         this.isAuthenticated.next(true);
     }
 
@@ -37,12 +39,36 @@ export class LoginService {
     authenticate(userData: { password: string; username: string }) {
         return this.http.post<{ token: string }>(this.loginUrl, userData).pipe(
             tap(response => {
-                localStorage.setItem('userToken', response.token);
+                localStorage.setItem('jwtToken', response.token);
                 this.isAuthenticated.next(true);
             })
         );
 
     }
+
+    getUserAndSaveToLocalstorage() {
+        const token = this.testService.getToken()
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        });
+
+        const url = environment.baseUrl + "/users/get";
+
+        this.http.get<any>(url, { headers }).pipe(
+            tap(user => {
+                localStorage.setItem('firstName', user.firstName);
+                localStorage.setItem('lastName', user.lastName);
+                localStorage.setItem('email', user.email);
+                localStorage.setItem('accountVerified', String(user.accountVerified));
+                localStorage.setItem('phoneNumber', user.phoneNumber);
+                localStorage.setItem('username', user.username);
+                localStorage.setItem('role', user.role); // how you handle 'user.role' depends on its structure.
+            })
+        ).subscribe();
+    }
+
+
 
     getUserRole(): string | null {
         const item = localStorage.getItem('userRole');

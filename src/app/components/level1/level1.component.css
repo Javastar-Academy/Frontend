@@ -212,13 +212,13 @@ h3 {
         }
         .cardFooter {
             gap: 30px;
-            padding: 0vw 7vw 5vw 7vw;
+            padding: 0 7vw 5vw 7vw;
         }
         .perks {
             padding: 5vw;
         }
         .cardHeader {
-            padding: 7vw 7vw 0vw 7vw;
+            padding: 7vw 7vw 0 7vw;
         }
         .cardFooter {
             gap: 20px;

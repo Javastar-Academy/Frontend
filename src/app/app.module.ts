@@ -42,7 +42,7 @@ import {DocumentationComponent} from "./dashboard/documentation/documentation.co
 import {GradesComponent} from "./dashboard/grades/grades.component";
 import {DashboardCoursesComponent} from "./dashboard/courses/dashboard-courses.component";
 import {DashboardHomeComponent} from './dashboard/dashboard-home/dashboard-home.component';
-import {MultipleChoiceTestComponent} from './multiple-choice-test/multiple-choice-test.component';
+import { TestViewComponent } from './dashboard/test-view/test-view.component';
 
 @NgModule({
   declarations: [
@@ -68,8 +68,9 @@ import {MultipleChoiceTestComponent} from './multiple-choice-test/multiple-choic
       GradesComponent,
       DashboardCoursesComponent,
       DashboardHomeComponent,
-      MultipleChoiceTestComponent
+      TestViewComponent,
   ],
+
   imports: [
     HttpClientModule,
     AppRoutingModule,
