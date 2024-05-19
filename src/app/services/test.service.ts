@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Test, WeeklyTest} from "../models/Test";
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
@@ -40,6 +40,20 @@ export class TestsService {
     // Retrieve your token from wherever it is stored
     return localStorage.getItem('firstname') || '';
   }
+
+  public getCourses(): number[] {
+    const coursesString = localStorage.getItem('courses');
+    if (!coursesString) return [];
+
+    console.log(coursesString);
+    try {
+      const parsed = JSON.parse(`[${coursesString}]`);
+      return Array.isArray(parsed) ? parsed : [parsed];
+    } catch {
+      return [Number(coursesString)];
+    }
+  }
+
 
   submitTestAnswers(weekId: number, answers: { questionId: number, answer: string }[]): Observable<any> {
     const url = `${this.baseUrl}/dashboard/tests/${weekId}/submit`;

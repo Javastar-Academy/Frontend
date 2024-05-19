@@ -40,13 +40,14 @@ export class LoginService {
         return this.http.post<{ token: string }>(this.loginUrl, userData).pipe(
             tap(response => {
                 localStorage.setItem('jwtToken', response.token);
+                this.getUserAndSaveToLocalstorage()
                 this.isAuthenticated.next(true);
             })
         );
 
     }
 
-    getUserAndSaveToLocalstorage() {
+    private getUserAndSaveToLocalstorage() {
         const token = this.testService.getToken()
         const headers = new HttpHeaders({
             'Authorization': `Bearer ${token}`,
@@ -71,7 +72,6 @@ export class LoginService {
 
 
     getUserRole(): string | null {
-        const item = localStorage.getItem('userRole');
-        return item;
+        return localStorage.getItem('userRole');
     }
 }

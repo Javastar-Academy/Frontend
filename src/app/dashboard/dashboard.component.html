@@ -8,24 +8,13 @@
 
 <!-- Main header content -->
 <header id="main-header">
-    <!-- Side navigation with profile and navigationda links -->
+    <!-- Side navigation with profile and navigation links -->
     <nav id="sidenav">
         <div id="sidenav-header" *ngIf="profile">
             <div id="profile-picture">
                 <img [src]="profile.photoUrl" alt="{{profile.name}}"/>
             </div>
             <a href="#" id="profile-link">{{ profile.name }}</a>
-        </div>
-        <div id="account-actions">
-            <a href="#" data-title="Home">
-                <fa-icon [icon]=faHome></fa-icon>
-            </a>
-            <a href="#" id="messages" data-title="Messages" data-newmessages="1">
-                <fa-icon [icon]=faInbox></fa-icon>
-            </a>
-            <a href="#" data-title="Settings">
-                <fa-icon [icon]=faCog></fa-icon>
-            </a>
         </div>
         <ul id="main-nav">
             <li *ngFor="let item of menuItems" [class.active]="router.url === item.href" (click)="setActive(item)">
@@ -35,16 +24,28 @@
                 </a>
             </li>
         </ul>
+        <div id="account-actions">
+            <a href="#" data-title="Home">
+                <fa-icon [icon]="faHome"></fa-icon>
+            </a>
+            <a href="#" id="messages" data-title="Messages" data-newmessages="1">
+                <fa-icon [icon]="faInbox"></fa-icon>
+            </a>
+            <a href="#" data-title="Settings">
+                <fa-icon [icon]="faCog"></fa-icon>
+            </a>
+        </div>
     </nav>
 
-    <!-- Admin search and logo -->
-    <form id="admin-search">
-        <input type="text" id="search-field" placeholder="Search" (focus)="headerLogoHidden = true"
-               (blur)="headerLogoHidden = false"/>
-        <label for="search-field" id="search-label" title="Search"><i class="fa fa-search"></i></label>
-    </form>
-    <div id="header_logo" [class.hidden]="headerLogoHidden">
-        <a href="#">Logo</a>
+    <!-- Admin toggle between available courses -->
+    <div id="course-toggle">
+        <label for="course-select">Select Course:</label>
+        <select id="course-select" (change)="setCurrentCourse($event)">
+            <option *ngFor="let course of courses" [value]="course" [selected]="course === currentCourse">
+                Course {{ course }}
+            </option>
+        </select>
     </div>
-</header>
+
+    <div id="header_logo" [class.hidden]="headerLogoHidden">
 

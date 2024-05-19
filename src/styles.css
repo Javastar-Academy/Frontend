@@ -31,7 +31,7 @@ body {
     --neutral-color-white: #fff;
     --main-text: #0f1017;
     --text-on-white: #57585D;
-    --main: #dab24a;
+    --main: #dca20e;
     --text-on-black: #cfcfd1;
     --color-darkgray-100: #b4b4b4;
     --color-darkgray-200: #ababab;
@@ -42,6 +42,7 @@ body {
     --neutral-color-500: #57585d;
     --primary-color-800: #e14817;
     --color-black: #000;
+
 
     /* Gaps */
     --gap-21xl: 2.5rem;
