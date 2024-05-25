@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { WeeklyTest } from "../../models/Test";
-import { TestsService } from "../../services/test.service";
+import {Component, OnInit} from '@angular/core';
+import {WeeklyTest} from "../../models/Test";
+import {TestsService} from "../../services/test.service";
 import {Router} from "@angular/router";
+import {CourseService} from "../../services/course.service";
 
 @Component({
     selector: 'app-tests',
@@ -11,11 +12,22 @@ import {Router} from "@angular/router";
 export class TestsComponent implements OnInit {
     weeklyTests: WeeklyTest[];
     currentDate = new Date();
+    private currentCourse: string;
 
-    constructor(private testsService: TestsService, private router: Router) { }
+    constructor(private testsService: TestsService, private router: Router, private courseService: CourseService) {
+    }
 
     ngOnInit(): void {
-        this.testsService.getWeeklyTests().subscribe({
+        this.courseService.currentCourse$.subscribe(courseName => {
+            this.currentCourse = courseName;
+            if (this.currentCourse !== undefined) {
+                this.loadWeeklyTests(this.currentCourse);
+            }
+        });
+    }
+
+    private loadWeeklyTests(currentCourse: string) {
+        this.testsService.getWeeklyTests(currentCourse).subscribe({
             next: (tests) => {
                 this.weeklyTests = tests.map(test => ({
                     ...test,
@@ -46,7 +58,7 @@ export class TestsComponent implements OnInit {
     startTest(test: WeeklyTest): void {
         if (test.remainingAttempts > 0) {
             test.remainingAttempts--;
-            this.testsService.decrementAttempts(test.week).subscribe(
+            this.testsService.decrementAttempts(this.currentCourse, test.week).subscribe(
                 {
                     next: (response) => {
                         console.log("decremented attempt");

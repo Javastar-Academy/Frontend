@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
     faBookOpen,
     faCog,
@@ -9,9 +9,10 @@ import {
     faTachometerAlt,
     faTasks
 } from '@fortawesome/free-solid-svg-icons';
-import { UserProfile, UserService } from "../services/user.service";
-import { Router } from "@angular/router";
-import { TestsService } from '../services/test.service';
+import {UserProfile, UserService} from "../services/user.service";
+import {Router} from "@angular/router";
+import {TestsService} from '../services/test.service';
+import {CourseService} from "../services/course.service";
 
 @Component({
     selector: 'app-dashboard',
@@ -27,8 +28,8 @@ export class DashboardComponent implements OnInit {
     faHome = faHome;
     faInbox = faInbox;
 
-    courses: number[] = [];
-    currentCourse: number | undefined;
+    courses: string[] = [];
+    currentCourse: string;
 
     faCog = faCog;
     menuItems = [
@@ -39,16 +40,18 @@ export class DashboardComponent implements OnInit {
         { name: 'Note', icon: faStar, active: false, href: "/dashboard/grades" },
     ];
 
-    constructor(private userService: UserService, public router: Router, private testService: TestsService) {
+    constructor(private userService: UserService, public router: Router, private courseService: CourseService) {
     }
 
     ngOnInit(): void {
         this.userService.getUserProfile().subscribe(profile => this.profile = profile);
-        this.courses = this.testService.getCourses();
-        console.log(this.courses + "<- courses")
-        if (this.courses.length > 0) {
-            this.currentCourse = this.courses[0]; // Default to the first course
-        }
+        let coursesString = localStorage.getItem('courses')!;
+        this.courses = coursesString.split(',');
+
+        this.courseService.currentCourse$.subscribe(course => {
+            this.currentCourse = course;
+        });
+
     }
 
     toggleMenu() {
@@ -62,7 +65,8 @@ export class DashboardComponent implements OnInit {
 
     setCurrentCourse(event: Event) {
         const target = event.target as HTMLSelectElement;
-        this.currentCourse = Number(target.value);
-        console.log(`Current course set to: ${this.currentCourse}`);
+        this.courseService.setCurrentCourse(target.value);
+        localStorage.setItem('currentCourse', target.value);
+        console.log(`Current course set to: ${target.value}`);
     }
 }

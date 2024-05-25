@@ -23,12 +23,13 @@ export class LoginComponent {
             response => {
                 const token = response.token; // Assuming the response object has a token property
                 const decodedToken = jwtDecode<any>(token); // Use jwtDecode to parse the token
-                const courses = decodedToken.courses;
+                const coursesString = decodedToken.courses;
                 const role = decodedToken.role;
 
                 localStorage.setItem('jwtToken', token); // Save the token to local storage
                 localStorage.setItem('role', role);   // Set user role to local storage
-                localStorage.setItem('courses', courses);   // Set user role to local storage
+
+                this.saveCourseToStorage(coursesString);
 
                 if (role === 'ADMIN') {
                     this.router.navigate(['/admin-dashboard']);
@@ -43,5 +44,20 @@ export class LoginComponent {
                 alert('Invalid credentials!');
             }
         );
+    }
+
+    private saveCourseToStorage(coursesString: string) {
+        let coursesArray: number[]
+        try {
+            const parsed = JSON.parse(`[${coursesString}]`);
+            coursesArray = Array.isArray(parsed) ? parsed : [parsed];
+        } catch {
+            coursesArray = [Number(coursesString)];
+        }
+
+        localStorage.setItem('courses', String(coursesArray));   // Set user role to local storage
+        console.log('set courses array - courses:' + String(coursesArray))
+        localStorage.setItem('currentCourse', String(coursesArray[0]))
+        console.log('set current course - currentCourse:' + String(coursesArray[0]))
     }
 }

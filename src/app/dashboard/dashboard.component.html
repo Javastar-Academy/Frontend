@@ -12,9 +12,9 @@
     <nav id="sidenav">
         <div id="sidenav-header" *ngIf="profile">
             <div id="profile-picture">
-                <img [src]="profile.photoUrl" alt="{{profile.name}}"/>
+                <img [src]="profile.photoUrl" alt="{{profile.firstName}}"/>
             </div>
-            <a href="#" id="profile-link">{{ profile.name }}</a>
+            <a href="#" id="profile-link">{{ profile.firstName + " " + profile.lastName}}</a>
         </div>
         <ul id="main-nav">
             <li *ngFor="let item of menuItems" [class.active]="router.url === item.href" (click)="setActive(item)">
@@ -48,4 +48,5 @@
     </div>
 
     <div id="header_logo" [class.hidden]="headerLogoHidden">
-
+    </div>
+</header>

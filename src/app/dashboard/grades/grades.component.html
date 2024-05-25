@@ -53,22 +53,22 @@
             <tbody>
             <tr *ngFor="let test of tests" class="test">
                 <td>Test</td>
-                <td>{{ test.name }}</td>
+                <td>{{ test?.name }}</td>
                 <td><span>{{ test.grade }}%</span></td>
             </tr>
             <tr *ngFor="let homework of homeworks" class="homework">
                 <td>Homework</td>
-                <td>{{ homework.name }}</td>
+                <td>{{ homework?.name }}</td>
                 <td><span>{{ homework.grade }}%</span></td>
             </tr>
             <tr class="final-project">
                 <td>Final Project</td>
-                <td>{{ finalProject.name }}</td>
-                <td><span>{{ finalProject.grade }}%</span></td>
+                <td>{{ finalProject?.name }}</td>
+                <td><span>{{ finalProject?.grade }}%</span></td>
             </tr>
             <tr *ngFor="let job of extraJobs" class="extra-job">
                 <td>Extra Job</td>
-                <td>{{ job.name }}</td>
+                <td>{{ job?.name }}</td>
                 <td><span>{{ job.grade }}%</span></td>
             </tr>
             </tbody>

@@ -43,6 +43,8 @@ import {GradesComponent} from "./dashboard/grades/grades.component";
 import {DashboardCoursesComponent} from "./dashboard/courses/dashboard-courses.component";
 import {DashboardHomeComponent} from './dashboard/dashboard-home/dashboard-home.component';
 import { TestViewComponent } from './dashboard/test-view/test-view.component';
+import {ProfileComponent} from "./dashboard/profile/profile.component";
+import {DashboardFooterComponent} from "./dashboard/dashboard-footer/dashboard-footer.component";
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { TestViewComponent } from './dashboard/test-view/test-view.component';
       DashboardCoursesComponent,
       DashboardHomeComponent,
       TestViewComponent,
+      ProfileComponent,
+    DashboardFooterComponent
   ],
 
   imports: [

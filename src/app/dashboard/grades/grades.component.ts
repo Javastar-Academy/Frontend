@@ -1,68 +1,99 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-
-interface GradeItem {
-    name: string;
-    grade: number;
-}
+import { Subscription } from 'rxjs';
+import { GradesService } from "../../services/grades.service";
+import { CourseService } from "../../services/course.service";
+import { GradeItem, GradeType } from "../../models/GradeItem";
 
 @Component({
     selector: 'app-grades',
     templateUrl: './grades.component.html',
     styleUrls: ['./grades.component.css']
 })
-export class GradesComponent implements OnInit, AfterViewInit {
-    tests: GradeItem[] = [
-        { name: 'Test 1', grade: 85 },
-        { name: 'Test 2', grade: 90 },
-        // Add more tests here
-    ];
+export class GradesComponent implements OnInit, AfterViewInit, OnDestroy {
+    tests: GradeItem[] = [];
+    homeworks: GradeItem[] = [];
+    finalProject: GradeItem | undefined;
+    extraJobs: GradeItem[] = [];
 
-    homeworks: GradeItem[] = [
-        { name: 'Homework 1', grade: 95 },
-        { name: 'Homework 2', grade: 88 },
-        // Add more homework here
-    ];
+    testsGrade: number = 0;
+    homeworkGrade: number = 0;
+    finalProjectGrade: number = 0;
+    extraJobsGrade: number = 0;
+    compositeGrade: number = 0;
 
-    finalProject: GradeItem = { name: 'Final Project', grade: 92 };
+    private courseSubscription: Subscription;
+    private currentCourse: string;
+    private chart: Chart | undefined;
 
-    extraJobs: GradeItem[] = [
-        { name: 'Extra Job 1', grade: 80 },
-        { name: 'Extra Job 2', grade: 85 },
-        // Add more extra jobs here
-    ];
-
-    testsGrade: number = this.calculateAverage(this.tests);
-    homeworkGrade: number = this.calculateAverage(this.homeworks);
-    finalProjectGrade: number = this.finalProject.grade;
-    extraJobsGrade: number = this.calculateAverage(this.extraJobs);
-    compositeGrade: number = this.calculateCompositeGrade();
-
-    constructor() {
+    constructor(private gradesService: GradesService, private courseService: CourseService) {
         Chart.register(...registerables);
     }
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.courseSubscription = this.courseService.currentCourse$.subscribe(
+            course => {
+                if (course !== undefined) {
+                    this.currentCourse = course;
+                    this.loadGrades(course);
+                }
+            },
+            err => {
+                console.error('Failed to get current course', err);
+            }
+        );
+    }
+
+    ngOnDestroy(): void {
+        if (this.courseSubscription) {
+            this.courseSubscription.unsubscribe();
+        }
+        if (this.chart) {
+            this.chart.destroy();
+        }
+    }
 
     ngAfterViewInit(): void {
         this.renderChart();
     }
 
+    loadGrades(courseId: string): void {
+        this.gradesService.getAllGrades(courseId).subscribe({
+            next: (tests) => {
+                this.tests = tests.filter(grade => grade.type === GradeType.TEST);
+                this.homeworks = tests.filter(grade => grade.type === GradeType.HOMEWORK);
+                this.finalProject = tests.find(grade => grade.type === GradeType.FINAL_PROJECT);
+                this.extraJobs = tests.filter(grade => grade.type === GradeType.EXTRA_JOB);
+
+                this.testsGrade = this.calculateAverage(this.tests);
+                this.homeworkGrade = this.calculateAverage(this.homeworks);
+                this.finalProjectGrade = this.finalProject ? this.finalProject.grade : 0;
+                this.extraJobsGrade = this.calculateAverage(this.extraJobs);
+                this.calculateCompositeGrade();
+                this.renderChart();
+            },
+            error: (err) => console.error('Failed to load tests grades', err)
+        });
+    }
+
     calculateAverage(items: GradeItem[]): number {
+        if (items.length === 0) return 0;
         const total = items.reduce((sum, item) => sum + item.grade, 0);
         return total / items.length;
     }
 
-    calculateCompositeGrade(): number {
-        return (
-            (this.testsGrade + this.homeworkGrade + this.finalProjectGrade + this.extraJobsGrade) / 4
-        );
+    calculateCompositeGrade(): void {
+        this.compositeGrade = (this.testsGrade + this.homeworkGrade + this.finalProjectGrade)/3
+            + this.extraJobsGrade / 10;
     }
 
     renderChart(): void {
         const ctx = (document.getElementById('gradesChart') as HTMLCanvasElement).getContext('2d');
         if (ctx) {
-            new Chart(ctx, {
+            if (this.chart) {
+                this.chart.destroy();
+            }
+            this.chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Tests', 'Homework', 'Final Project', 'Extra Jobs'],

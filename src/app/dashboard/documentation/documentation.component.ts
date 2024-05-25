@@ -1,13 +1,10 @@
 import {Component} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
+import {CourseService} from "../../services/course.service";
+import {Router} from "@angular/router";
+import {Pdf} from "../../models/Video";
+import {Subscription} from "rxjs";
 
-
-export interface Pdf {
-    url: string;
-    title: string;
-    description: string;
-    thumbnail: string;
-}
 
 @Component({
     selector: 'app-documentation',
@@ -15,33 +12,50 @@ export interface Pdf {
     styleUrls: ['./documentation.component.css']
 })
 export class DocumentationComponent {
-    pdfs: Pdf[] = [
-        {
-            url: 'assets/pdf/invoice.pdf',
-            title: 'Getting Started with Programming',
-            description: 'A comprehensive guide to get you started with programming.',
-            thumbnail: 'assets/thumbnail/thumbnail1.png'
-        },
-        {
-            url: 'assets/pdf/recomandare.pdf',
-            title: 'Advanced JavaScript Techniques',
-            description: 'Explore advanced JavaScript concepts and techniques.',
-            thumbnail: 'assets/thumbnail/thumbnail1.png'
-        },
-        {
-            url: 'assets/pdf/resume.pdf',
-            title: 'Advanced JavaScript Techniques',
-            description: 'Explore advanced JavaScript concepts and techniques.',
-            thumbnail: 'assets/thumbnail/thumbnail1.png'
-        },
-        // Add more PDF objects here
-    ];
+    pdfs: Pdf[] = [];
+    selectedPdf: Pdf | null = null;
+    private currentCourse: string;
+    private courseSubscription: Subscription;
 
-    selectedPdf: Pdf | null = this.pdfs[0];
+    constructor(public sanitizer: DomSanitizer, private courseService: CourseService, private router: Router) {}
 
-    constructor(public sanitizer: DomSanitizer) {}
+    ngOnInit(): void {
+        this.courseSubscription = this.courseService.currentCourse$.subscribe(
+            course => {
+                if (course !== undefined) {
+                    this.currentCourse = course;
+                    this.loadPdfs(course);
+                }
+            },
+            err => {
+                console.error('Failed to get current course', err);
+                this.router.navigate(['/login']);
+            }
+        );
+    }
 
-    ngOnInit(): void {}
+    ngOnDestroy() {
+        if (this.courseSubscription) {
+            this.courseSubscription.unsubscribe();
+        }
+    }
+
+    loadPdfs(courseId: string) {
+        this.courseService.getPdfsByCourse(courseId).subscribe({
+            next: (pdfs) => {
+                this.pdfs = pdfs;
+                if (this.pdfs.length > 0) {
+                    this.selectedPdf = this.pdfs[0];
+                } else {
+                    this.selectedPdf = null;
+                }
+            },
+            error: (err) => {
+                console.error('Failed to load PDFs', err);
+                this.router.navigate(['/login']);
+            }
+        });
+    }
 
     selectPdf(pdf: Pdf): void {
         this.selectedPdf = pdf;

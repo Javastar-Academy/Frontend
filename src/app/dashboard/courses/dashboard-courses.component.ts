@@ -1,54 +1,65 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {Pdf} from "../documentation/documentation.component";
-interface Video {
-    pdf: Pdf;
-    url: string;
-    title: string;
-    description: string;
-    thumbnail: string;
-}
-
+import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
+import {CourseService} from "../../services/course.service";
+import {Subscription} from 'rxjs';
+import {Video} from "../../models/Video";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-courses',
     templateUrl: './dashboard-courses.component.html',
     styleUrls: ['./dashboard-courses.component.css']
 })
-export class DashboardCoursesComponent {
+export class DashboardCoursesComponent implements OnInit {
     @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
 
-    videos: Video[] = [
-        {
-            url: 'assets/videos/video1.MOV',
-            title: 'Introduction to Programming',
-            description: 'An introduction to the basics of programming.',
-            thumbnail: 'assets/thumbnail/thumbnail1.png',
-            pdf: {
-                url: 'assets/pdf/invoice.pdf',
-                title: 'Getting Started with Programming',
-                description: 'A comprehensive guide to get you started with programming.',
-                thumbnail: 'assets/thumbnail/thumbnail1.png'
-            },
-        },
-        {
-            url: 'assets/videos/video2.MOV',
-            title: 'Advanced JavaScript',
-            description: 'Deep dive into advanced concepts of JavaScript.',
-            thumbnail: 'assets/thumbnail/thumbnail2.png',
-            pdf: {
-                url: 'assets/pdf/recomandare.pdf',
-                title: 'Advanced JavaScript Techniques',
-                description: 'Explore advanced JavaScript concepts and techniques.',
-                thumbnail: 'assets/thumbnail/thumbnail1.png'
-            },
-        },
-        // Add more video objects here
-    ];
-
-    selectedVideo: Video | null = this.videos[0];
+    videos: Video[] = [];
+    selectedVideo: Video | null = null;
     playbackRate: number = 1.0;
+    private currentCourse: string;
+    private courseSubscription: Subscription;
 
-    ngOnInit(): void {}
+    constructor(private courseService: CourseService, private router: Router) {
+    }
+
+    ngOnInit(): void {
+        this.courseSubscription = this.courseService.currentCourse$.subscribe(
+            course => {
+                if (course !== undefined) {
+                    this.currentCourse = course;
+                    this.loadVideos(course);
+                }
+            },
+            err => {
+                console.error('Failed to get current course', err);
+                this.router.navigate(['/login']);
+            }
+        );
+    }
+
+    ngOnDestroy() {
+        if (this.courseSubscription) {
+            this.courseSubscription.unsubscribe();
+        }
+    }
+
+    loadVideos(courseId: string) {
+        this.courseService.getVideosByCourse(courseId).subscribe({
+            next: (videos) => {
+                this.videos = videos;
+                if (this.videos.length > 0) {
+                    this.selectedVideo = this.videos[0];
+                } else {
+                    this.selectedVideo = null
+                }
+            },
+            error: (err) => {
+                console.error('Failed to load videos', err);
+                this.router.navigate(['/login']);
+            }
+        });
+    }
+
 
     selectVideo(video: Video): void {
         this.selectedVideo = video;
@@ -57,14 +68,6 @@ export class DashboardCoursesComponent {
             this.videoPlayer.nativeElement.playbackRate = this.playbackRate;
         }
     }
-
-    changePlaybackRate(delta: number): void {
-        if (this.videoPlayer) {
-            this.playbackRate = Math.max(0.5, Math.min(2.0, this.playbackRate + delta));
-            this.videoPlayer.nativeElement.playbackRate = this.playbackRate;
-        }
-    }
-
 
     downloadPdf(url: string): void {
         window.open(url, '_blank');

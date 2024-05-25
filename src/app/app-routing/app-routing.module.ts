@@ -20,7 +20,8 @@ import {Course} from "../common/course";
 import {DocumentationComponent} from "../dashboard/documentation/documentation.component";
 import {GradesComponent} from "../dashboard/grades/grades.component";
 import {DashboardHomeComponent} from "../dashboard/dashboard-home/dashboard-home.component";
-import {TestViewComponent} from "../dashboard/test-view/test-view.component"; // CLI imports router
+import {TestViewComponent} from "../dashboard/test-view/test-view.component";
+import {ProfileComponent} from "../dashboard/profile/profile.component"; // CLI imports router
 
 const routes: Routes = [
     // redirects
@@ -48,7 +49,8 @@ const routes: Routes = [
     {path: 'dashboard/documentation', component: DocumentationComponent},
     {path: 'dashboard/grades', component: GradesComponent},
     {path: 'dashboard/home', component: DashboardHomeComponent},
-    { path: 'test-view/:id', component: TestViewComponent }
+    { path: 'test-view/:id', component: TestViewComponent },
+    { path: 'dashboard/profile', component: ProfileComponent },  // Add the route for the Profile component
 
 ];
 
